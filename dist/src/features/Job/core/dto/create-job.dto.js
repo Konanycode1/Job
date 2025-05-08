@@ -13,10 +13,6 @@ exports.CreateJobDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateJobDto {
-    title;
-    description;
-    recruiter;
-    createdAt;
 }
 exports.CreateJobDto = CreateJobDto;
 __decorate([

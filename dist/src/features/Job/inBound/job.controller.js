@@ -11,6 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JobController = void 0;
 const common_1 = require("@nestjs/common");
@@ -22,33 +31,42 @@ const swagger_1 = require("@nestjs/swagger");
 const role_decorator_1 = require("../../../common/decorators/role.decorator");
 const role_guard_1 = require("../../../common/guard/role.guard");
 let JobController = class JobController {
-    jobService;
     constructor(jobService) {
         this.jobService = jobService;
     }
-    async create(createJobDto, res) {
-        const result = await this.jobService.create(createJobDto);
-        const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.CREATED;
-        return res.status(status).json(result);
+    create(createJobDto, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.create(createJobDto);
+            const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.CREATED;
+            return res.status(status).json(result);
+        });
     }
-    async findAll(res) {
-        const result = await this.jobService.findAll();
-        return res.status(200).json({ success: true, data: result });
+    findAll(res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.findAll();
+            return res.status(200).json({ success: true, data: result });
+        });
     }
-    async findOne(id, res) {
-        const result = await this.jobService.findById(id);
-        const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
-        return res.status(status).json(result);
+    findOne(id, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.findById(id);
+            const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
+            return res.status(status).json(result);
+        });
     }
-    async update(id, updateJobDto, res) {
-        const result = await this.jobService.update(id, updateJobDto);
-        const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.OK;
-        return res.status(status).json(result);
+    update(id, updateJobDto, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.update(id, updateJobDto);
+            const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.OK;
+            return res.status(status).json(result);
+        });
     }
-    async remove(id, res) {
-        const result = await this.jobService.delete(id);
-        const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
-        return res.status(status).json(result);
+    remove(id, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.delete(id);
+            const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
+            return res.status(status).json(result);
+        });
     }
 };
 exports.JobController = JobController;

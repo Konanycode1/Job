@@ -12,10 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateApplyDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 class CreateApplyDto {
-    appliedAt;
-    cvUrl;
-    job;
-    candiate;
 }
 exports.CreateApplyDto = CreateApplyDto;
 __decorate([

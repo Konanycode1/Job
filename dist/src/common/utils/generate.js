@@ -6,13 +6,13 @@ const jwtConstant_1 = require("../constants/jwtConstant");
 const jwtService = new jwt_1.JwtService();
 const generateToken = (payload, configService) => {
     const jwtTime = configService.get('JWT_EXPIRATION_TIME') || '15m';
-    return jwtService.sign({ ...payload }, { secret: jwtConstant_1.jwtConstants.secret, expiresIn: jwtTime });
+    return jwtService.sign(Object.assign({}, payload), { secret: jwtConstant_1.jwtConstants.secret, expiresIn: jwtTime });
 };
 exports.generateToken = generateToken;
 const refreshTokenExpired = (payload, configService) => {
     const secret = configService.get('JWT_SECRET');
     const jwtTime = '7d';
-    return jwtService.sign({ ...payload }, { secret: jwtConstant_1.jwtConstants.secret, expiresIn: jwtTime });
+    return jwtService.sign(Object.assign({}, payload), { secret: jwtConstant_1.jwtConstants.secret, expiresIn: jwtTime });
 };
 exports.refreshTokenExpired = refreshTokenExpired;
 const verifyToken = (token, configService) => {
@@ -20,7 +20,7 @@ const verifyToken = (token, configService) => {
         const decoded = jwtService.verify(token, { secret: jwtConstant_1.jwtConstants.secret });
         return decoded;
     }
-    catch {
+    catch (_a) {
         throw new Error('Invalid token');
     }
 };

@@ -13,8 +13,6 @@ exports.LoginAuthDto = exports.CreateAuthDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateAuthDto {
-    phone;
-    password;
 }
 exports.CreateAuthDto = CreateAuthDto;
 __decorate([
@@ -26,8 +24,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateAuthDto.prototype, "password", void 0);
 class LoginAuthDto {
-    email;
-    password;
 }
 exports.LoginAuthDto = LoginAuthDto;
 __decorate([

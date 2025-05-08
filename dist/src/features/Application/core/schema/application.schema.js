@@ -15,10 +15,6 @@ const mongoose_2 = require("mongoose");
 const user_schema_1 = require("../../../User/core/schema/user.schema");
 const job_schema_1 = require("../../../Job/core/schema/job.schema");
 let Application = class Application {
-    job;
-    candidate;
-    cvUrl;
-    appliedAt;
 };
 exports.Application = Application;
 __decorate([

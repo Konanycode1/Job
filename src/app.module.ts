@@ -30,4 +30,5 @@ import { ApplyModule } from 'features/Application/apply.module';
     },
   ],
 })
+
 export class AppModule {}
