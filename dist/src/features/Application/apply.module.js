@@ -15,13 +15,16 @@ const apply_service_1 = require("./core/use-case/apply.service");
 const application_provider_1 = require("./core/provider/application.provider");
 const db_provider_1 = require("../../config/db.provider");
 const db_module_1 = require("../../config/db.module");
+const apply_controller_1 = require("./inBound/apply.controller");
 let ApplyModule = class ApplyModule {
 };
 exports.ApplyModule = ApplyModule;
 exports.ApplyModule = ApplyModule = __decorate([
     (0, common_1.Module)({
         imports: [db_module_1.DbModule, user_module_1.UserModule, job_module_1.JobModule],
-        controllers: [],
+        controllers: [
+            apply_controller_1.ApplyController
+        ],
         providers: [...db_provider_1.dbProviders, apply_service_1.ApplyService, ...application_provider_1.applyProviders, apply_repository_1.ApplyRepository],
         exports: [...application_provider_1.applyProviders, apply_service_1.ApplyService, apply_repository_1.ApplyRepository],
     })

@@ -14,9 +14,6 @@ const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const user_schema_1 = require("../schema/user.schema");
 class CreateUserDto {
-    email;
-    password;
-    role;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([

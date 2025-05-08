@@ -13,11 +13,11 @@ exports.RolesGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 let RolesGuard = class RolesGuard {
-    reflector;
     constructor(reflector) {
         this.reflector = reflector;
     }
     canActivate(context) {
+        var _a;
         const roles = this.reflector.getAllAndOverride('roles', [
             context.getClass(),
             context.getHandler(),
@@ -29,7 +29,7 @@ let RolesGuard = class RolesGuard {
         }
         const request = context.switchToHttp().getRequest();
         const user = request.user;
-        const userRoleId = request.user?.role;
+        const userRoleId = (_a = request.user) === null || _a === void 0 ? void 0 : _a.role;
         const hasRole = roles.includes(userRoleId);
         if (!user || !user.role || !roles.includes(user.role)) {
             throw new common_1.ForbiddenException({

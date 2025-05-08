@@ -14,10 +14,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const user_schema_1 = require("../../../User/core/schema/user.schema");
 let Job = class Job {
-    title;
-    description;
-    recruiter;
-    createdAt;
 };
 exports.Job = Job;
 __decorate([

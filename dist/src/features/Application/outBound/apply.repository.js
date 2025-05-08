@@ -11,58 +11,82 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApplyRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
 let ApplyRepository = class ApplyRepository {
-    applyModel;
     constructor(applyModel) {
         this.applyModel = applyModel;
     }
-    async create(dto) {
-        return await this.applyModel.create(dto);
+    create(dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel.create(dto);
+        });
     }
-    async findById(id) {
-        return await this.applyModel
-            .findById(id)
-            .populate('job')
-            .populate('candidate')
-            .exec();
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .findById(id)
+                .populate('job')
+                .populate('candidate')
+                .exec();
+        });
     }
-    async findByJob(job) {
-        return await this.applyModel
-            .findOne({ job: job })
-            .populate('candidate')
-            .populate('job')
-            .exec();
+    findByJob(job) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .findOne({ job: job })
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
     }
-    async findByCandidate(candidate) {
-        return await this.applyModel
-            .findOne({ candidate: candidate })
-            .populate('candidate')
-            .populate('job')
-            .exec();
+    findByCandidate(candidate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .findOne({ candidate: candidate })
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
     }
-    async findByJobAndCandidate(job, candidate) {
-        return await this.applyModel
-            .findOne({ job: job, candidate: candidate })
-            .populate('candidate')
-            .populate('job')
-            .exec();
+    findByJobAndCandidate(job, candidate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .findOne({ job: job, candidate: candidate })
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
     }
-    async findAll() {
-        return await this.applyModel
-            .find({})
-            .populate('candidate')
-            .populate('job')
-            .exec();
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .find({})
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
     }
-    async edit(id, dto) {
-        return await this.applyModel.findByIdAndUpdate(id, dto, { new: true });
+    edit(id, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel.findByIdAndUpdate(id, dto, { new: true });
+        });
     }
-    async delete(id) {
-        return await this.applyModel.deleteOne({ _id: id });
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel.deleteOne({ _id: id });
+        });
     }
 };
 exports.ApplyRepository = ApplyRepository;

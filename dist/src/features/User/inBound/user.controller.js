@@ -11,6 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
@@ -19,28 +28,30 @@ const user_service_1 = require("../core/use-case/user.service");
 const updateUser_dto_1 = require("../core/dto/updateUser.dto");
 const auth_guard_1 = require("../../../common/guard/auth.guard");
 class UserResponseDto {
-    id;
-    email;
-    role;
-    createdAt;
-    updatedAt;
 }
 let UserController = class UserController {
-    userService;
     constructor(userService) {
         this.userService = userService;
     }
-    async update(id, updateUserDto) {
-        return await this.userService.update(id, updateUserDto);
+    update(id, updateUserDto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userService.update(id, updateUserDto);
+        });
     }
-    async delete(id) {
-        return await this.userService.delete(id);
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userService.delete(id);
+        });
     }
-    async findOne(id) {
-        return await this.userService.findOne(id);
+    findOne(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userService.findOne(id);
+        });
     }
-    async findAll() {
-        return await this.userService.findAll();
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userService.findAll();
+        });
     }
 };
 exports.UserController = UserController;

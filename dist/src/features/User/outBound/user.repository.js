@@ -11,65 +11,87 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
 let UserRepository = class UserRepository {
-    userModel;
     constructor(userModel) {
         this.userModel = userModel;
     }
-    async create(dto) {
-        const { email, password, role } = dto;
-        if (!email || !password)
-            return { sucess: false, message: 'Email and password are required' };
-        const existEmail = await this.userModel.findOne({ email });
-        if (existEmail)
-            return { sucess: false, message: 'Email already exist' };
-        if (role === 'admin') {
-            const admin = await this.userModel.findOne({ role: 'admin' });
-            if (admin)
-                return { sucess: false, message: 'Admin already exist' };
-        }
-        const createdCat = await this.userModel.create(dto);
-        return createdCat;
-    }
-    async delete(id) {
-        const exist = await this.userModel.findById(id);
-        if (!exist)
-            return { sucess: false, message: 'User not found' };
-        const deleted = await this.userModel.findByIdAndDelete(id);
-        return deleted;
-    }
-    async edit(id, dto) {
-        const exist = await this.userModel.findById(id);
-        if (!exist)
-            return { sucess: false, message: 'User not found' };
-        const updated = await this.userModel.findByIdAndUpdate(id, dto, {
-            new: true,
+    create(dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email, password, role } = dto;
+            if (!email || !password)
+                return { sucess: false, message: 'Email and password are required' };
+            const existEmail = yield this.userModel.findOne({ email });
+            if (existEmail)
+                return { sucess: false, message: 'Email already exist' };
+            if (role === 'admin') {
+                const admin = yield this.userModel.findOne({ role: 'admin' });
+                if (admin)
+                    return { sucess: false, message: 'Admin already exist' };
+            }
+            const createdCat = yield this.userModel.create(dto);
+            return createdCat;
         });
-        return updated;
     }
-    async findById(id) {
-        const exist = await this.userModel.findById(id);
-        if (!exist)
-            return { sucess: false, message: 'User not found' };
-        return exist;
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const exist = yield this.userModel.findById(id);
+            if (!exist)
+                return { sucess: false, message: 'User not found' };
+            const deleted = yield this.userModel.findByIdAndDelete(id);
+            return deleted;
+        });
     }
-    async findOne(role) {
-        const exist = await this.userModel.findOne({ role });
-        return exist;
+    edit(id, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const exist = yield this.userModel.findById(id);
+            if (!exist)
+                return { sucess: false, message: 'User not found' };
+            const updated = yield this.userModel.findByIdAndUpdate(id, dto, {
+                new: true,
+            });
+            return updated;
+        });
     }
-    async findUserExist(email) {
-        const exist = await this.userModel.findOne({ email });
-        if (!exist)
-            return { sucess: false, message: 'User not found' };
-        return exist;
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const exist = yield this.userModel.findById(id);
+            if (!exist)
+                return { sucess: false, message: 'User not found' };
+            return exist;
+        });
     }
-    async findAll() {
-        const users = await this.userModel.find({}).exec();
-        return users;
+    findOne(role) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const exist = yield this.userModel.findOne({ role });
+            return exist;
+        });
+    }
+    findUserExist(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const exist = yield this.userModel.findOne({ email });
+            if (!exist)
+                return { sucess: false, message: 'User not found' };
+            return exist;
+        });
+    }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const users = yield this.userModel.find({}).exec();
+            return users;
+        });
     }
 };
 exports.UserRepository = UserRepository;

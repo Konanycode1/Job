@@ -16,9 +16,6 @@ const swagger_2 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const user_schema_1 = require("../schema/user.schema");
 class UpdateUserDto extends (0, swagger_1.PartialType)(createUser_dto_1.CreateUserDto) {
-    email;
-    password;
-    role;
 }
 exports.UpdateUserDto = UpdateUserDto;
 __decorate([

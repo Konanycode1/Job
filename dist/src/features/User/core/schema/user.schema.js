@@ -18,10 +18,6 @@ var UserRole;
     UserRole["CANDIDATE"] = "candidat";
 })(UserRole || (exports.UserRole = UserRole = {}));
 let User = class User {
-    email;
-    password;
-    role;
-    createdAt;
 };
 exports.User = User;
 __decorate([

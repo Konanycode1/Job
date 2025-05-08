@@ -11,37 +11,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JobRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
 let JobRepository = class JobRepository {
-    jobModel;
     constructor(jobModel) {
         this.jobModel = jobModel;
     }
-    async create(dto) {
-        return await this.jobModel.create(dto);
-    }
-    async findOne(title) {
-        const job = await this.jobModel.findOne({ title }).populate('recruiter');
-        return job;
-    }
-    async findAll() {
-        return await this.jobModel.find({}).populate('recruiter').exec();
-    }
-    async findById(id) {
-        return await this.jobModel.findById(id).populate('recruiter').exec();
-    }
-    async edit(id, dto) {
-        const updated = await this.jobModel.findByIdAndUpdate(id, dto, {
-            new: true,
+    create(dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.jobModel.create(dto);
         });
-        return updated;
     }
-    async delete(id) {
-        const deleted = await this.jobModel.findByIdAndDelete(id);
-        return deleted;
+    findOne(title) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const job = yield this.jobModel.findOne({ title }).populate('recruiter');
+            return job;
+        });
+    }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.jobModel.find({}).populate('recruiter').exec();
+        });
+    }
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.jobModel.findById(id).populate('recruiter').exec();
+        });
+    }
+    edit(id, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const updated = yield this.jobModel.findByIdAndUpdate(id, dto, {
+                new: true,
+            });
+            return updated;
+        });
+    }
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const deleted = yield this.jobModel.findByIdAndDelete(id);
+            return deleted;
+        });
     }
 };
 exports.JobRepository = JobRepository;
