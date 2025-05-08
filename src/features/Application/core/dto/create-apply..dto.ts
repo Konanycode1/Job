@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateApplyDto {
-  
   @ApiProperty({
     example: new Date().toISOString(),
     description: 'Date de la candidature',
@@ -16,7 +15,7 @@ export class CreateApplyDto {
 
   @ApiProperty({
     example: 'jobId123',
-    description: 'ID de l\'offre d\'emploi',
+    description: "ID de l'offre d'emploi",
   })
   job: string;
 
@@ -24,5 +23,5 @@ export class CreateApplyDto {
     example: 'candidateId123',
     description: 'ID du candidat qui postule',
   })
-  candiate: string; 
+  candiate: string;
 }

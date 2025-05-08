@@ -54,14 +54,14 @@ const comparePasswords = async (plainTextPassword, hashedPassword) => {
         else {
             return {
                 success: false,
-                error: "Invalid authentication information.",
+                error: 'Invalid authentication information.',
             };
         }
     }
     catch (error) {
         return {
             success: false,
-            error: "An unknown error occurred when comparing passwords.",
+            error: 'An unknown error occurred when comparing passwords.',
         };
     }
 };

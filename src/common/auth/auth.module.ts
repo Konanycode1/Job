@@ -9,16 +9,16 @@ import { UserModule } from 'features/User/user.module';
 import { JwtGuard } from 'common/guard/auth.guard';
 
 @Module({
-  imports:[
+  imports: [
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '5m' },
     }),
-    UserModule
+    UserModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtGuard, JwtStrategy],
-  exports:[AuthService, JwtModule, JwtGuard]
+  exports: [AuthService, JwtModule, JwtGuard],
 })
 export class AuthModule {}

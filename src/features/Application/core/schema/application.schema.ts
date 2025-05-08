@@ -12,7 +12,7 @@ export class Application {
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
   candidate: User;
-  
+
   @Prop({ required: true })
   cvUrl: string;
 

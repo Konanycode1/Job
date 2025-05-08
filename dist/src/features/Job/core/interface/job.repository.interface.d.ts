@@ -1,6 +1,6 @@
-import { CreateJobDto } from "../dto/create-job.dto";
-import { UpdateJobDto } from "../dto/update-job.dto";
-import { Job } from "../schema/job.schema";
+import { CreateJobDto } from '../dto/create-job.dto';
+import { UpdateJobDto } from '../dto/update-job.dto';
+import { Job } from '../schema/job.schema';
 export declare abstract class InterfaceJobRepository {
     abstract create(dto: CreateJobDto): Promise<Job>;
     abstract findById(id: string): Promise<Job | null>;

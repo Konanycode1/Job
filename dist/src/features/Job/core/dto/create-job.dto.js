@@ -20,25 +20,39 @@ class CreateJobDto {
 }
 exports.CreateJobDto = CreateJobDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Développeur Full Stack', description: 'Titre de l\'offre d\'emploi' }),
+    (0, swagger_1.ApiProperty)({
+        example: 'Développeur Full Stack',
+        description: "Titre de l'offre d'emploi",
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateJobDto.prototype, "title", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Nous recherchons un développeur...', description: 'Description du poste' }),
+    (0, swagger_1.ApiProperty)({
+        example: 'Nous recherchons un développeur...',
+        description: 'Description du poste',
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateJobDto.prototype, "description", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '609dcd42f2b3a12b8c8fbc5e', description: 'ID du recruteur (User)', type: String }),
+    (0, swagger_1.ApiProperty)({
+        example: '609dcd42f2b3a12b8c8fbc5e',
+        description: 'ID du recruteur (User)',
+        type: String,
+    }),
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateJobDto.prototype, "recruiter", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: new Date().toISOString(), description: 'Date de création', required: false }),
+    (0, swagger_1.ApiProperty)({
+        example: new Date().toISOString(),
+        description: 'Date de création',
+        required: false,
+    }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateJobDto.prototype, "createdAt", void 0);

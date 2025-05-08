@@ -34,7 +34,7 @@ let RolesGuard = class RolesGuard {
         if (!user || !user.role || !roles.includes(user.role)) {
             throw new common_1.ForbiddenException({
                 success: false,
-                errorCode: "INSUFFICIENT_PERMISSIONS",
+                errorCode: 'INSUFFICIENT_PERMISSIONS',
                 message: "Accès refusé : vous n'avez pas les permissions nécessaires pour effectuer cette action.",
             });
         }

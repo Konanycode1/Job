@@ -24,22 +24,19 @@ let JobRepository = class JobRepository {
         return await this.jobModel.create(dto);
     }
     async findOne(title) {
-        const job = await this.jobModel.findOne({ title })
-            .populate('recruiter');
+        const job = await this.jobModel.findOne({ title }).populate('recruiter');
         return job;
     }
     async findAll() {
-        return await this.jobModel.find({})
-            .populate('recruiter')
-            .exec();
+        return await this.jobModel.find({}).populate('recruiter').exec();
     }
     async findById(id) {
-        return await this.jobModel.findById(id)
-            .populate('recruiter')
-            .exec();
+        return await this.jobModel.findById(id).populate('recruiter').exec();
     }
     async edit(id, dto) {
-        const updated = await this.jobModel.findByIdAndUpdate(id, dto, { new: true });
+        const updated = await this.jobModel.findByIdAndUpdate(id, dto, {
+            new: true,
+        });
         return updated;
     }
     async delete(id) {

@@ -24,31 +24,36 @@ let ApplyRepository = class ApplyRepository {
         return await this.applyModel.create(dto);
     }
     async findById(id) {
-        return await this.applyModel.findById(id)
+        return await this.applyModel
+            .findById(id)
             .populate('job')
             .populate('candidate')
             .exec();
     }
     async findByJob(job) {
-        return await this.applyModel.findOne({ job: job })
+        return await this.applyModel
+            .findOne({ job: job })
             .populate('candidate')
             .populate('job')
             .exec();
     }
     async findByCandidate(candidate) {
-        return await this.applyModel.findOne({ candidate: candidate })
+        return await this.applyModel
+            .findOne({ candidate: candidate })
             .populate('candidate')
             .populate('job')
             .exec();
     }
     async findByJobAndCandidate(job, candidate) {
-        return await this.applyModel.findOne({ job: job, candidate: candidate })
+        return await this.applyModel
+            .findOne({ job: job, candidate: candidate })
             .populate('candidate')
             .populate('job')
             .exec();
     }
     async findAll() {
-        return await this.applyModel.find({})
+        return await this.applyModel
+            .find({})
             .populate('candidate')
             .populate('job')
             .exec();
@@ -63,6 +68,6 @@ let ApplyRepository = class ApplyRepository {
 exports.ApplyRepository = ApplyRepository;
 exports.ApplyRepository = ApplyRepository = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)('APPLY_MODEL')),
+    __param(0, (0, common_1.Inject)('APPLICATION_MODEL')),
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], ApplyRepository);

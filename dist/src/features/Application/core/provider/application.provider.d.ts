@@ -1,5 +1,5 @@
-import { Connection } from "mongoose";
-export declare const userProviders: {
+import { Connection } from 'mongoose';
+export declare const applyProviders: {
     provide: string;
     useFactory: (connection: Connection) => import("mongoose").Model<import("features/Application/core/schema/application.schema").Application, {}, {}, {}, import("mongoose").Document<unknown, {}, import("features/Application/core/schema/application.schema").Application, {}> & import("features/Application/core/schema/application.schema").Application & {
         _id: import("mongoose").Types.ObjectId;

@@ -1,8 +1,8 @@
-import { ConfigService } from "@nestjs/config";
-import { CreateUserDto } from "features/User/core/dto/createUser.dto";
-import { UserService } from "features/User/core/use-case/user.service";
-import { UserRepository } from "features/User/outBound/user.repository";
-import { LoginAuthDto } from "./dto/create-auth.dto";
+import { ConfigService } from '@nestjs/config';
+import { CreateUserDto } from 'features/User/core/dto/createUser.dto';
+import { UserService } from 'features/User/core/use-case/user.service';
+import { UserRepository } from 'features/User/outBound/user.repository';
+import { LoginAuthDto } from './dto/create-auth.dto';
 export declare class AuthService {
     private readonly userService;
     private configService;

@@ -20,7 +20,7 @@ async function bootstrap() {
     app.setGlobalPrefix('api');
     const options = new swagger_1.DocumentBuilder()
         .setTitle('API JOBS')
-        .setDescription('Documentation de l\'API du projet JOBS')
+        .setDescription("Documentation de l'API du projet JOBS")
         .setVersion('1.0')
         .addBearerAuth()
         .build();

@@ -5,5 +5,5 @@ export const jobProviders = [
     provide: 'JOB_MODEL',
     useFactory: (connection: Connection) => connection.model('Job', JobSchema),
     inject: ['DATABASE_CONNECTION'],
-  }
-]
+  },
+];

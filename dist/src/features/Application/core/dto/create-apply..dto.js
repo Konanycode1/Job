@@ -35,7 +35,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'jobId123',
-        description: 'ID de l\'offre d\'emploi',
+        description: "ID de l'offre d'emploi",
     }),
     __metadata("design:type", String)
 ], CreateApplyDto.prototype, "job", void 0);

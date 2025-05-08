@@ -1,6 +1,6 @@
-import { CreateUserDto } from "features/User/core/dto/createUser.dto";
-import { UpdateUserDto } from "features/User/core/dto/updateUser.dto";
-import { User } from "../schema/user.schema";
+import { CreateUserDto } from 'features/User/core/dto/createUser.dto';
+import { UpdateUserDto } from 'features/User/core/dto/updateUser.dto';
+import { User } from '../schema/user.schema';
 export declare abstract class InterfaceUserRepository {
     abstract create(dto: CreateUserDto): Promise<User>;
     abstract findById(id: string): Promise<User | null>;

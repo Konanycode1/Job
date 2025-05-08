@@ -8,25 +8,24 @@ import { validationOptions } from 'common/validators/validation.option';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe(validationOptions));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new LoggingInterceptor());
-  
+
   app.enableVersioning({
     type: VersioningType.URI,
   });
   app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()
-  .setTitle('API JOBS')
-  .setDescription('Documentation de l\'API du projet JOBS')
-  .setVersion('1.0')
-  .addBearerAuth()
-  .build();
+    .setTitle('API JOBS')
+    .setDescription("Documentation de l'API du projet JOBS")
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api/docs', app, document);
 

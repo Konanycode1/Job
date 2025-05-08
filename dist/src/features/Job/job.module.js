@@ -20,23 +20,9 @@ let JobModule = class JobModule {
 exports.JobModule = JobModule;
 exports.JobModule = JobModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            db_module_1.DbModule,
-            user_module_1.UserModule,
-        ],
-        controllers: [
-            job_controller_1.JobController
-        ],
-        providers: [
-            job_service_1.JobService,
-            ...db_provider_1.dbProviders,
-            job_repository_1.JobRepository,
-            ...job_provider_1.jobProviders
-        ],
-        exports: [
-            ...job_provider_1.jobProviders,
-            job_service_1.JobService,
-            job_repository_1.JobRepository
-        ]
+        imports: [db_module_1.DbModule, user_module_1.UserModule],
+        controllers: [job_controller_1.JobController],
+        providers: [job_service_1.JobService, ...db_provider_1.dbProviders, job_repository_1.JobRepository, ...job_provider_1.jobProviders],
+        exports: [...job_provider_1.jobProviders, job_service_1.JobService, job_repository_1.JobRepository],
     })
 ], JobModule);

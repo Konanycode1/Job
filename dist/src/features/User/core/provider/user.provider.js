@@ -7,5 +7,5 @@ exports.userProviders = [
         provide: 'USER_MODEL',
         useFactory: (connection) => connection.model('User', user_schema_1.UserSchema),
         inject: ['DATABASE_CONNECTION'],
-    }
+    },
 ];

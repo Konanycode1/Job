@@ -1,7 +1,7 @@
-import { Model } from "mongoose";
-import { Job } from "../core/schema/job.schema";
-import { InterfaceJobRepository } from "../core/interface/job.repository.interface";
-import { CreateJobDto } from "../core/dto/create-job.dto";
+import { Model } from 'mongoose';
+import { Job } from '../core/schema/job.schema';
+import { InterfaceJobRepository } from '../core/interface/job.repository.interface';
+import { CreateJobDto } from '../core/dto/create-job.dto';
 export declare class JobRepository implements InterfaceJobRepository {
     private jobModel;
     constructor(jobModel: Model<Job>);

@@ -32,7 +32,10 @@ let AuthService = class AuthService {
         }
         const result = await this.userRepository.create(createAuthDto);
         if (!result) {
-            return { success: false, message: 'User already exist or error to create user' };
+            return {
+                success: false,
+                message: 'User already exist or error to create user',
+            };
         }
         return { success: true, message: 'User created successfully' };
     }
@@ -72,7 +75,7 @@ let AuthService = class AuthService {
         }
         return {
             success: true,
-            user
+            user,
         };
     }
 };

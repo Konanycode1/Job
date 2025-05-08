@@ -1,6 +1,5 @@
 export enum RoleEnum {
-    admin,
-    recruteur,
-    candidat
-  }
-  
+  admin,
+  recruteur,
+  candidat,
+}

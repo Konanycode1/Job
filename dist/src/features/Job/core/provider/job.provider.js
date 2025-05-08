@@ -7,5 +7,5 @@ exports.jobProviders = [
         provide: 'JOB_MODEL',
         useFactory: (connection) => connection.model('Job', job_schema_1.JobSchema),
         inject: ['DATABASE_CONNECTION'],
-    }
+    },
 ];

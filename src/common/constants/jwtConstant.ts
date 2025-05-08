@@ -1,5 +1,5 @@
-import { env } from "config/env.validation";
+import { env } from 'config/env.validation';
 
 export const jwtConstants = {
-    secret: env.JWT_SECRET,
-  };
+  secret: env.JWT_SECRET,
+};

@@ -29,7 +29,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       ignoreExpiration: false,
       secretOrKey: env.JWT_SECRET, // Utilisez une clé secrète sécurisée
     });
-
   }
 
   async validate(payload: JwtPayload) {

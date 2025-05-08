@@ -7,20 +7,9 @@ import { UserRepository } from './outBound/user.repository';
 import { userProviders } from 'features/User/core/provider/user.provider';
 
 @Module({
-    imports: [
-        DbModule
-    ],
-    controllers: [UserController],
-    providers: [
-        UserService,
-        ...dbProviders,
-        UserRepository,
-        ...userProviders
-    ],
-    exports: [
-        ...userProviders,
-        UserService,
-        UserRepository
-    ]
+  imports: [DbModule],
+  controllers: [UserController],
+  providers: [UserService, ...dbProviders, UserRepository, ...userProviders],
+  exports: [...userProviders, UserService, UserRepository],
 })
 export class UserModule {}

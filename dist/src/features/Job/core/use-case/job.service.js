@@ -23,7 +23,10 @@ let JobService = class JobService {
     async create(dto) {
         const { recruiter, title, description } = dto;
         if (!recruiter || !title || !description)
-            return ({ sucess: false, message: 'Recruiter, title and description are required' });
+            return {
+                sucess: false,
+                message: 'Recruiter, title and description are required',
+            };
         const userExist = await this.userService.findOne(recruiter);
         if (!userExist) {
             return { success: false, message: 'User not found' };
@@ -54,16 +57,16 @@ let JobService = class JobService {
     async update(id, dto) {
         const exist = await this.jobRepository.findById(id);
         if (!exist)
-            return ({ sucess: false, message: 'Job not found' });
+            return { sucess: false, message: 'Job not found' };
         const updated = await this.jobRepository.edit(id, dto);
         if (!updated)
-            return ({ sucess: false, message: 'Job not updated' });
+            return { sucess: false, message: 'Job not updated' };
         return { success: true, data: updated };
     }
     async delete(id) {
         const exist = await this.jobRepository.findById(id);
         if (!exist)
-            return ({ sucess: false, message: 'Job not found' });
+            return { sucess: false, message: 'Job not found' };
         const deleted = await this.jobRepository.delete(id);
         return deleted;
     }

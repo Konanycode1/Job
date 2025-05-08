@@ -31,7 +31,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'jobId123',
-        description: 'ID de l\'offre d\'emploi',
+        description: "ID de l'offre d'emploi",
         required: false,
     }),
     (0, class_validator_1.IsOptional)(),

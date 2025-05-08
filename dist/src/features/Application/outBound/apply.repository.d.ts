@@ -1,6 +1,6 @@
-import { InterfaceApplyRepository } from "../core/interface/apply.repository.interface";
-import { Application } from "../core/schema/application.schema";
-import { Model } from "mongoose";
+import { InterfaceApplyRepository } from '../core/interface/apply.repository.interface';
+import { Application } from '../core/schema/application.schema';
+import { Model } from 'mongoose';
 export declare class ApplyRepository implements InterfaceApplyRepository {
     private applyModel;
     constructor(applyModel: Model<Application>);

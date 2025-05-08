@@ -54,15 +54,15 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.OK,
         description: 'User successfully updated',
-        type: UserResponseDto
+        type: UserResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.BAD_REQUEST,
-        description: 'Email already exists or admin role already taken'
+        description: 'Email already exists or admin role already taken',
     }),
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.NOT_FOUND,
-        description: 'User not found'
+        description: 'User not found',
     }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -78,11 +78,11 @@ __decorate([
     (0, swagger_1.ApiParam)({ name: 'id', description: 'User ID' }),
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.OK,
-        description: 'User successfully deleted'
+        description: 'User successfully deleted',
     }),
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.NOT_FOUND,
-        description: 'User not found'
+        description: 'User not found',
     }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -98,11 +98,11 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.OK,
         description: 'User found',
-        type: UserResponseDto
+        type: UserResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.NOT_FOUND,
-        description: 'User not found'
+        description: 'User not found',
     }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -115,7 +115,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: common_1.HttpStatus.OK,
         description: 'List of all users',
-        type: [UserResponseDto]
+        type: [UserResponseDto],
     }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

@@ -16,6 +16,7 @@ const logger_interceptor_1 = require("./common/interceptors/logger.interceptor")
 const core_1 = require("@nestjs/core");
 const auth_module_1 = require("./common/auth/auth.module");
 const job_module_1 = require("./features/Job/job.module");
+const apply_module_1 = require("./features/Application/apply.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,11 +25,12 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                envFilePath: '.env'
+                envFilePath: '.env',
             }),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
-            job_module_1.JobModule
+            job_module_1.JobModule,
+            apply_module_1.ApplyModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [
@@ -36,7 +38,7 @@ exports.AppModule = AppModule = __decorate([
             {
                 provide: core_1.APP_INTERCEPTOR,
                 useClass: logger_interceptor_1.LoggingInterceptor,
-            }
+            },
         ],
     })
 ], AppModule);

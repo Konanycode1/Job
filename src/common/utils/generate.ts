@@ -12,7 +12,10 @@ export const generateToken = (
   // console.log(payload);
   const jwtTime = configService.get('JWT_EXPIRATION_TIME') || '15m';
   // console.log(jwtTime);
-  return jwtService.sign({ ...payload }, { secret:jwtConstants.secret, expiresIn: jwtTime });
+  return jwtService.sign(
+    { ...payload },
+    { secret: jwtConstants.secret, expiresIn: jwtTime },
+  );
 };
 
 export const refreshTokenExpired = (
@@ -21,9 +24,11 @@ export const refreshTokenExpired = (
 ): string => {
   const secret = configService.get('JWT_SECRET');
   const jwtTime = '7d';
-  return jwtService.sign({ ...payload }, { secret:jwtConstants.secret, expiresIn: jwtTime });
+  return jwtService.sign(
+    { ...payload },
+    { secret: jwtConstants.secret, expiresIn: jwtTime },
+  );
 };
-
 
 // Fonction pour vérifier un token JWT
 export const verifyToken = (
@@ -31,10 +36,9 @@ export const verifyToken = (
   configService: ConfigService,
 ): string | object => {
   try {
-    const decoded =  jwtService.verify(token, { secret: jwtConstants.secret });
+    const decoded = jwtService.verify(token, { secret: jwtConstants.secret });
     return decoded;
   } catch {
     throw new Error('Invalid token');
   }
 };
-

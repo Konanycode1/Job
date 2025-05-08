@@ -21,7 +21,7 @@ let UserService = class UserService {
     async create(dto) {
         const { email, password, role } = dto;
         if (!email || !password)
-            return ({ sucess: false, message: 'Email and password are required' });
+            return { sucess: false, message: 'Email and password are required' };
         const hash = await (0, crypt_1.hashPassword)(password);
         dto.password = hash;
         return await this.userRepository.create(dto);
@@ -32,10 +32,10 @@ let UserService = class UserService {
         if (role === 'admin') {
             const admin = await this.userRepository.findOne(role);
             if (admin)
-                return ({ sucess: false, message: 'Admin already exist' });
+                return { sucess: false, message: 'Admin already exist' };
         }
         if (existEmail)
-            return ({ sucess: false, message: 'Email already exist' });
+            return { sucess: false, message: 'Email already exist' };
         if (password) {
             const hash = await (0, crypt_1.hashPassword)(password);
             dto.password = hash;

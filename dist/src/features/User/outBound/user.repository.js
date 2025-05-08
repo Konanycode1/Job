@@ -23,14 +23,14 @@ let UserRepository = class UserRepository {
     async create(dto) {
         const { email, password, role } = dto;
         if (!email || !password)
-            return ({ sucess: false, message: 'Email and password are required' });
+            return { sucess: false, message: 'Email and password are required' };
         const existEmail = await this.userModel.findOne({ email });
         if (existEmail)
-            return ({ sucess: false, message: 'Email already exist' });
+            return { sucess: false, message: 'Email already exist' };
         if (role === 'admin') {
             const admin = await this.userModel.findOne({ role: 'admin' });
             if (admin)
-                return ({ sucess: false, message: 'Admin already exist' });
+                return { sucess: false, message: 'Admin already exist' };
         }
         const createdCat = await this.userModel.create(dto);
         return createdCat;
@@ -38,21 +38,23 @@ let UserRepository = class UserRepository {
     async delete(id) {
         const exist = await this.userModel.findById(id);
         if (!exist)
-            return ({ sucess: false, message: 'User not found' });
+            return { sucess: false, message: 'User not found' };
         const deleted = await this.userModel.findByIdAndDelete(id);
         return deleted;
     }
     async edit(id, dto) {
         const exist = await this.userModel.findById(id);
         if (!exist)
-            return ({ sucess: false, message: 'User not found' });
-        const updated = await this.userModel.findByIdAndUpdate(id, dto, { new: true });
+            return { sucess: false, message: 'User not found' };
+        const updated = await this.userModel.findByIdAndUpdate(id, dto, {
+            new: true,
+        });
         return updated;
     }
     async findById(id) {
         const exist = await this.userModel.findById(id);
         if (!exist)
-            return ({ sucess: false, message: 'User not found' });
+            return { sucess: false, message: 'User not found' };
         return exist;
     }
     async findOne(role) {
@@ -62,7 +64,7 @@ let UserRepository = class UserRepository {
     async findUserExist(email) {
         const exist = await this.userModel.findOne({ email });
         if (!exist)
-            return ({ sucess: false, message: 'User not found' });
+            return { sucess: false, message: 'User not found' };
         return exist;
     }
     async findAll() {

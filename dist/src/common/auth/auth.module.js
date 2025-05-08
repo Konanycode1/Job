@@ -26,10 +26,10 @@ exports.AuthModule = AuthModule = __decorate([
                 secret: jwtConstant_1.jwtConstants.secret,
                 signOptions: { expiresIn: '5m' },
             }),
-            user_module_1.UserModule
+            user_module_1.UserModule,
         ],
         controllers: [auth_controller_1.AuthController],
         providers: [auth_service_1.AuthService, auth_guard_1.JwtGuard, jwt_strategy_1.JwtStrategy],
-        exports: [auth_service_1.AuthService, jwt_1.JwtModule, auth_guard_1.JwtGuard]
+        exports: [auth_service_1.AuthService, jwt_1.JwtModule, auth_guard_1.JwtGuard],
     })
 ], AuthModule);

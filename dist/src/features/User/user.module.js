@@ -19,20 +19,9 @@ let UserModule = class UserModule {
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            db_module_1.DbModule
-        ],
+        imports: [db_module_1.DbModule],
         controllers: [user_controller_1.UserController],
-        providers: [
-            user_service_1.UserService,
-            ...db_provider_1.dbProviders,
-            user_repository_1.UserRepository,
-            ...user_provider_1.userProviders
-        ],
-        exports: [
-            ...user_provider_1.userProviders,
-            user_service_1.UserService,
-            user_repository_1.UserRepository
-        ]
+        providers: [user_service_1.UserService, ...db_provider_1.dbProviders, user_repository_1.UserRepository, ...user_provider_1.userProviders],
+        exports: [...user_provider_1.userProviders, user_service_1.UserService, user_repository_1.UserRepository],
     })
 ], UserModule);

@@ -4,40 +4,39 @@ import { UserRepository } from 'features/User/outBound/user.repository';
 
 @Injectable()
 export class UserService {
-    constructor(
-        private readonly userRepository: UserRepository
-    ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
-    async create(dto: any): Promise<any> {
-        const { email, password, role } = dto
-        if(!email || !password) return({sucess: false, message: 'Email and password are required'})
-        const hash = await hashPassword(password);
-        dto.password = hash
-        return await this.userRepository.create(dto);
-    }
+  async create(dto: any): Promise<any> {
+    const { email, password, role } = dto;
+    if (!email || !password)
+      return { sucess: false, message: 'Email and password are required' };
+    const hash = await hashPassword(password);
+    dto.password = hash;
+    return await this.userRepository.create(dto);
+  }
 
-    async update(id: string, dto: any): Promise<any> {
-        const { email, password, role } = dto
-        const existEmail = await this.userRepository.findUserExist(email);
-        if(role === 'admin'){
-            const admin = await this.userRepository.findOne(role)
-            if(admin) return({sucess: false, message: 'Admin already exist'})
-        }
-        if(existEmail) return({sucess: false, message: 'Email already exist'})
-        if(password) {
-            const hash = await hashPassword(password);
-            dto.password = hash
-        }
-        return await this.userRepository.edit(id, dto);
+  async update(id: string, dto: any): Promise<any> {
+    const { email, password, role } = dto;
+    const existEmail = await this.userRepository.findUserExist(email);
+    if (role === 'admin') {
+      const admin = await this.userRepository.findOne(role);
+      if (admin) return { sucess: false, message: 'Admin already exist' };
     }
+    if (existEmail) return { sucess: false, message: 'Email already exist' };
+    if (password) {
+      const hash = await hashPassword(password);
+      dto.password = hash;
+    }
+    return await this.userRepository.edit(id, dto);
+  }
 
-    delete(id: string): Promise<any> {
-        return this.userRepository.delete(id);
-    }
-    async findOne(id: string): Promise<any> {
-        return await this.userRepository.findById(id);
-    }
-    async findAll(): Promise<any> {
-        return await this.userRepository.findAll();
-    }
+  delete(id: string): Promise<any> {
+    return this.userRepository.delete(id);
+  }
+  async findOne(id: string): Promise<any> {
+    return await this.userRepository.findById(id);
+  }
+  async findAll(): Promise<any> {
+    return await this.userRepository.findAll();
+  }
 }

@@ -57,7 +57,7 @@ __decorate([
     (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
     (0, role_decorator_1.Roles)('recruteur'),
     (0, swagger_1.ApiBearerAuth)(),
-    (0, swagger_1.ApiOperation)({ summary: 'Créer une offre d\'emploi' }),
+    (0, swagger_1.ApiOperation)({ summary: "Créer une offre d'emploi" }),
     (0, swagger_1.ApiResponse)({ status: 201, description: 'Job créé avec succès' }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),

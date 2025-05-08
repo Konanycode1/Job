@@ -1,7 +1,7 @@
-import { InterfaceUserRepository } from "features/User/core/interface/user.repository.interface";
-import { User } from "features/User/core/schema/user.schema";
-import { Model } from "mongoose";
-import { CreateUserDto } from "features/User/core/dto/createUser.dto";
+import { InterfaceUserRepository } from 'features/User/core/interface/user.repository.interface';
+import { User } from 'features/User/core/schema/user.schema';
+import { Model } from 'mongoose';
+import { CreateUserDto } from 'features/User/core/dto/createUser.dto';
 export declare class UserRepository implements InterfaceUserRepository {
     private userModel;
     constructor(userModel: Model<User>);

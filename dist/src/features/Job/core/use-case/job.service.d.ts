@@ -1,7 +1,7 @@
-import { JobRepository } from "features/Job/outBound/job.repository";
-import { CreateJobDto } from "features/Job/core/dto/create-job.dto";
-import { UserService } from "features/User/core/use-case/user.service";
-import { UpdateJobDto } from "../dto/update-job.dto";
+import { JobRepository } from 'features/Job/outBound/job.repository';
+import { CreateJobDto } from 'features/Job/core/dto/create-job.dto';
+import { UserService } from 'features/User/core/use-case/user.service';
+import { UpdateJobDto } from '../dto/update-job.dto';
 export declare class JobService {
     private readonly jobRepository;
     private readonly userService;
