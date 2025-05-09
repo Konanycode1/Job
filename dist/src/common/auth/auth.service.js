@@ -34,7 +34,7 @@ let AuthService = class AuthService {
     create(createAuthDto) {
         return __awaiter(this, void 0, void 0, function* () {
             const userExist = yield this.userRepository.findUserExist(createAuthDto.email);
-            if (userExist) {
+            if (userExist.success === true) {
                 return { success: false, message: 'User already exist' };
             }
             const result = yield this.userRepository.create(createAuthDto);
@@ -50,13 +50,11 @@ let AuthService = class AuthService {
     login(createAuthDto) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email, password } = createAuthDto;
-            console.log(email, password);
             if (!email || !password) {
                 return { success: false, message: 'Please fill in all fields' };
             }
             const userExist = yield this.userRepository.findUserExist(email);
-            console.log(userExist);
-            if (!userExist) {
+            if (userExist.success === false) {
                 return { success: false, message: 'Email not found.' };
             }
             const [verifyPass] = yield Promise.all([

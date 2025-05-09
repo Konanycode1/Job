@@ -21,7 +21,7 @@ let ApplyModule = class ApplyModule {
 exports.ApplyModule = ApplyModule;
 exports.ApplyModule = ApplyModule = __decorate([
     (0, common_1.Module)({
-        imports: [db_module_1.DbModule, user_module_1.UserModule, job_module_1.JobModule],
+        imports: [db_module_1.DbModule, user_module_1.UserModule, (0, common_1.forwardRef)(() => job_module_1.JobModule)],
         controllers: [
             apply_controller_1.ApplyController
         ],

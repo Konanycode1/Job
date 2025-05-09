@@ -1,11 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional } from 'class-validator';
 
 export class CreateApplyDto {
   @ApiProperty({
     example: new Date().toISOString(),
     description: 'Date de la candidature',
   })
-  appliedAt: Date;
+  @IsOptional()
+  appliedAt?: Date;
 
   @ApiProperty({
     example: 'https://example.com/cv.pdf',
@@ -23,5 +25,5 @@ export class CreateApplyDto {
     example: 'candidateId123',
     description: 'ID du candidat qui postule',
   })
-  candiate: string;
+  candidate: string;
 }

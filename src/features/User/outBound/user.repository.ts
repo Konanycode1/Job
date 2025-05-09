@@ -16,6 +16,7 @@ export class UserRepository implements InterfaceUserRepository {
     if (!email || !password)
       return { sucess: false, message: 'Email and password are required' };
     const existEmail = await this.userModel.findOne({ email });
+    console.log(existEmail);
     if (existEmail) return { sucess: false, message: 'Email already exist' };
     if (role === 'admin') {
       const admin = await this.userModel.findOne({ role: 'admin' });
@@ -40,7 +41,7 @@ export class UserRepository implements InterfaceUserRepository {
   }
   async findById(id: string): Promise<any> {
     const exist = await this.userModel.findById(id);
-    if (!exist) return { sucess: false, message: 'User not found' };
+    if (exist === null) return { sucess: false, message: 'User not found' };
     return exist;
   }
 

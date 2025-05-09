@@ -34,6 +34,7 @@ let UserRepository = class UserRepository {
             if (!email || !password)
                 return { sucess: false, message: 'Email and password are required' };
             const existEmail = yield this.userModel.findOne({ email });
+            console.log(existEmail);
             if (existEmail)
                 return { sucess: false, message: 'Email already exist' };
             if (role === 'admin') {
@@ -68,7 +69,7 @@ let UserRepository = class UserRepository {
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const exist = yield this.userModel.findById(id);
-            if (!exist)
+            if (exist === null)
                 return { sucess: false, message: 'User not found' };
             return exist;
         });

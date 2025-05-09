@@ -10,6 +10,8 @@ export declare class ApplyRepository implements InterfaceApplyRepository {
     findByCandidate(candidate: string): Promise<Application | null>;
     findByJobAndCandidate(job: string, candidate: string): Promise<Application | null>;
     findAll(): Promise<Application[]>;
+    findAllApplyByJob(job: string): Promise<Application[]>;
+    findAllApplyByCandidate(candidate: string): Promise<Application[]>;
     edit(id: string, dto: any): Promise<any>;
     delete(id: string): Promise<any>;
 }

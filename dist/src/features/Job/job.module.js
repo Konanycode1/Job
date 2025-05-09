@@ -15,12 +15,13 @@ const job_service_1 = require("./core/use-case/job.service");
 const db_provider_1 = require("../../config/db.provider");
 const job_provider_1 = require("./core/provider/job.provider");
 const job_repository_1 = require("./outBound/job.repository");
+const apply_module_1 = require("../Application/apply.module");
 let JobModule = class JobModule {
 };
 exports.JobModule = JobModule;
 exports.JobModule = JobModule = __decorate([
     (0, common_1.Module)({
-        imports: [db_module_1.DbModule, user_module_1.UserModule],
+        imports: [db_module_1.DbModule, user_module_1.UserModule, (0, common_1.forwardRef)(() => apply_module_1.ApplyModule)],
         controllers: [job_controller_1.JobController],
         providers: [job_service_1.JobService, ...db_provider_1.dbProviders, job_repository_1.JobRepository, ...job_provider_1.jobProviders],
         exports: [...job_provider_1.jobProviders, job_service_1.JobService, job_repository_1.JobRepository],

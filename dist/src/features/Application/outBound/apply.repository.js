@@ -78,6 +78,24 @@ let ApplyRepository = class ApplyRepository {
                 .exec();
         });
     }
+    findAllApplyByJob(job) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .find({ job: job })
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
+    }
+    findAllApplyByCandidate(candidate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.applyModel
+                .find({ candidate })
+                .populate('candidate')
+                .populate('job')
+                .exec();
+        });
+    }
     edit(id, dto) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.applyModel.findByIdAndUpdate(id, dto, { new: true });

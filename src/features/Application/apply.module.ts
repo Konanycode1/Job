@@ -1,15 +1,15 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { JobModule } from 'features/Job/job.module';
 import { UserModule } from 'features/User/user.module';
-import { ApplyRepository } from './outBound/apply.repository';
-import { ApplyService } from './core/use-case/apply.service';
-import { applyProviders } from './core/provider/application.provider';
+import { ApplyRepository } from 'features/Application/outBound/apply.repository';
+import { ApplyService } from 'features/Application/core/use-case/apply.service';
+import { applyProviders } from 'features/Application/core/provider/application.provider';
 import { dbProviders } from 'config/db.provider';
 import { DbModule } from 'config/db.module';
-import { ApplyController } from './inBound/apply.controller';
+import { ApplyController } from 'features/Application/inBound/apply.controller';
 
 @Module({
-  imports: [DbModule, UserModule, JobModule],
+  imports: [DbModule, UserModule, forwardRef(() => JobModule)],
   controllers: [
     ApplyController
   ],

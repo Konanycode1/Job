@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateApplyDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class CreateApplyDto {
 }
 exports.CreateApplyDto = CreateApplyDto;
@@ -19,6 +20,7 @@ __decorate([
         example: new Date().toISOString(),
         description: 'Date de la candidature',
     }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateApplyDto.prototype, "appliedAt", void 0);
 __decorate([
@@ -41,4 +43,4 @@ __decorate([
         description: 'ID du candidat qui postule',
     }),
     __metadata("design:type", String)
-], CreateApplyDto.prototype, "candiate", void 0);
+], CreateApplyDto.prototype, "candidate", void 0);

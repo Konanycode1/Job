@@ -6,7 +6,9 @@ export declare abstract class InterfaceApplyRepository {
     abstract findById(id: string): Promise<Application | null>;
     abstract findByJob(job: string): Promise<Application | null>;
     abstract findByCandidate(candidate: string): Promise<Application | null>;
+    abstract findAllApplyByJob(job: string): Promise<Array<Application>>;
     abstract findByJobAndCandidate(job: string, candidate: string): Promise<Application | null>;
+    abstract findAllApplyByCandidate(candidate: string): Promise<Array<Application>>;
     abstract findAll(): Promise<Array<Application>>;
     abstract edit(id: string, dto: UpdateApplyDto): Promise<Application>;
     abstract delete(id: string): Promise<any>;

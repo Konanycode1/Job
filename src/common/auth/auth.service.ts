@@ -20,7 +20,7 @@ export class AuthService {
     const userExist = await this.userRepository.findUserExist(
       createAuthDto.email,
     );
-    if (userExist) {
+    if (userExist.success === true) {
       return { success: false, message: 'User already exist' };
     }
     const result = await this.userRepository.create(createAuthDto);
@@ -35,18 +35,14 @@ export class AuthService {
 
   async login(createAuthDto: LoginAuthDto) {
     const { email, password } = createAuthDto;
-    console.log(email, password);
     // verifier l'existe du telephone et l'email
     if (!email || !password) {
       return { success: false, message: 'Please fill in all fields' };
     }
-
     const userExist = await this.userRepository.findUserExist(email);
-    console.log(userExist);
-    if (!userExist) {
+    if (userExist.success === false) {
       return { success: false, message: 'Email not found.' };
     }
-
     const [verifyPass] = await Promise.all([
       comparePasswords(password, userExist.password),
     ]);
@@ -54,7 +50,6 @@ export class AuthService {
     if (!verifyPass) {
       return { success: false, message: 'Invalid password.' };
     }
-
     const refreshToken = refreshTokenExpired(
       { id: userExist.id, email: userExist.email, role: userExist.role },
       this.configService,

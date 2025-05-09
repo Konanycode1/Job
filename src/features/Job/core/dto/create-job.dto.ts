@@ -23,8 +23,8 @@ export class CreateJobDto {
     description: 'ID du recruteur (User)',
     type: String,
   })
-  @IsMongoId()
-  @IsNotEmpty()
+
+  @IsOptional()
   recruiter: string;
 
   @ApiProperty({
@@ -34,4 +34,15 @@ export class CreateJobDto {
   })
   @IsOptional()
   createdAt?: Date;
+}
+
+
+export class ApplyDto {
+
+  @ApiProperty({
+    example: 'https://example.com/cv.pdf',
+    description: 'URL du CV du candidat',
+  })
+  @IsString()
+  cvUrl: string;
 }

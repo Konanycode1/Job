@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateJobDto = void 0;
+exports.ApplyDto = exports.CreateJobDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateJobDto {
@@ -39,8 +39,7 @@ __decorate([
         description: 'ID du recruteur (User)',
         type: String,
     }),
-    (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateJobDto.prototype, "recruiter", void 0);
 __decorate([
@@ -52,3 +51,14 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateJobDto.prototype, "createdAt", void 0);
+class ApplyDto {
+}
+exports.ApplyDto = ApplyDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'https://example.com/cv.pdf',
+        description: 'URL du CV du candidat',
+    }),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ApplyDto.prototype, "cvUrl", void 0);

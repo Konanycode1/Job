@@ -1,6 +1,6 @@
 export declare class CreateApplyDto {
-    appliedAt: Date;
+    appliedAt?: Date;
     cvUrl: string;
     job: string;
-    candiate: string;
+    candidate: string;
 }

@@ -34,9 +34,20 @@ let JobController = class JobController {
     constructor(jobService) {
         this.jobService = jobService;
     }
-    create(createJobDto, res) {
+    create(createJobDto, res, req) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.user;
+            createJobDto.recruiter = id;
             const result = yield this.jobService.create(createJobDto);
+            const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.CREATED;
+            return res.status(status).json(result);
+        });
+    }
+    applyJob(createJobDto, res, id, req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id: userId } = req.user;
+            console.log(createJobDto);
+            const result = yield this.jobService.applyJob(id, userId, createJobDto);
             const status = result.success === false ? common_1.HttpStatus.BAD_REQUEST : common_1.HttpStatus.CREATED;
             return res.status(status).json(result);
         });
@@ -51,6 +62,14 @@ let JobController = class JobController {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this.jobService.findById(id);
             const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
+            return res.status(status).json(result);
+        });
+    }
+    applyByJob(id, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.jobService.jobByRecruiter(id);
+            const status = result.success === false ? common_1.HttpStatus.NOT_FOUND : common_1.HttpStatus.OK;
+            console.log(result);
             return res.status(status).json(result);
         });
     }
@@ -75,17 +94,33 @@ __decorate([
     (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
     (0, role_decorator_1.Roles)('recruteur'),
     (0, swagger_1.ApiBearerAuth)(),
-    (0, swagger_1.ApiOperation)({ summary: "Créer une offre d'emploi" }),
-    (0, swagger_1.ApiResponse)({ status: 201, description: 'Job créé avec succès' }),
+    (0, swagger_1.ApiOperation)({ summary: "Create a job offer" }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Job successfully created' }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_job_dto_1.CreateJobDto, Object]),
+    __metadata("design:paramtypes", [create_job_dto_1.CreateJobDto, Object, Object]),
     __metadata("design:returntype", Promise)
 ], JobController.prototype, "create", null);
 __decorate([
+    (0, common_1.Post)('/:id/apply'),
+    (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)('candidat'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiOperation)({ summary: "Apply for a job" }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Request sent successfully' }),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)()),
+    __param(2, (0, common_1.Param)('id')),
+    __param(3, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_job_dto_1.ApplyDto, Object, String, Object]),
+    __metadata("design:returntype", Promise)
+], JobController.prototype, "applyJob", null);
+__decorate([
     (0, common_1.Get)(),
-    (0, swagger_1.ApiOperation)({ summary: 'Liste de toutes les offres' }),
+    (0, swagger_1.ApiOperation)({ summary: 'List of all offers' }),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -95,7 +130,7 @@ __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
     (0, role_decorator_1.Roles)('recruteur'),
-    (0, swagger_1.ApiOperation)({ summary: 'Récupérer une offre par ID' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Retrieve an offer by ID' }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -103,10 +138,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], JobController.prototype, "findOne", null);
 __decorate([
+    (0, common_1.Get)(':id/applications'),
+    (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)('recruteur'),
+    (0, swagger_1.ApiOperation)({ summary: "Retrieve all applicants by recruiter's offer" }),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], JobController.prototype, "applyByJob", null);
+__decorate([
     (0, common_1.Patch)(':id'),
     (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
     (0, role_decorator_1.Roles)('recruteur'),
-    (0, swagger_1.ApiOperation)({ summary: 'Mettre à jour une offre' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Update an offer' }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.Res)()),
@@ -118,7 +164,7 @@ __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.UseGuards)(auth_guard_1.JwtGuard, role_guard_1.RolesGuard),
     (0, role_decorator_1.Roles)('recruteur'),
-    (0, swagger_1.ApiOperation)({ summary: 'Supprimer une offre' }),
+    (0, swagger_1.ApiOperation)({ summary: 'delete an offer' }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),

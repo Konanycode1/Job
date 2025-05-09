@@ -1,98 +1,182 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Plateforme Infini Job
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Aperçu
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Job Infini est une plateforme complète de gestion d'emploi construite avec NestJS, fournissant une architecture backend robuste pour les offres d'emploi, les candidatures et la gestion des utilisateurs. L'application suit un modèle d'architecture propre avec une séparation claire des préoccupations entre la logique métier, les contrôleurs entrants et les référentiels sortants.
 
-## Description
+## 📦 Arborescence du projet
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ pnpm install
+```
+src/
+├── common/                     # Utilitaires communs et modules partagés
+│   ├── auth/                   # Authentification et autorisation
+│   ├── constants/              # Constantes de l'application
+│   ├── decorators/             # Décorateurs personnalisés
+│   ├── filters/                # Filtres d'exception
+│   ├── guard/                  # Gardes pour la protection des routes
+│   ├── interceptors/           # Intercepteurs de requêtes/réponses
+│   ├── utils/                  # Fonctions utilitaires
+│   └── validators/             # Validateurs personnalisés
+├── config/                     # Configuration de l'application ( connexion la Base de données)
+├── features/                   # Modules de fonctionnalités
+│   ├── Application/            # Gestion des candidatures
+|   |    ├── core/              # Modèles de domaine, DTOs, interfaces, logique metier, schema, provider
+|   |    ├── inBound            # Contrôleurs (couche HTTP)
+|   |    ├── outBound           # Référentiels (couche d'accès aux données)
+|   |    └── apply.module.ts
+│   ├── Job/                    # Gestion des offres d'emploi
+│   │   ├── core/               # Modèles de domaine, DTOs, interfaces, logique metier, schema, provider
+│   │   ├── inBound/            # Contrôleurs (couche HTTP)
+|   |   ├── outBound/           # Référentiels (couche d'accès aux données)
+│   │   └── job.modules.ts        
+│   └── User/                   # Gestion des utilisateurs
+│       ├── core/               # Modèles de domaine, DTOs, interfaces
+│       ├── inBound/            # Contrôleurs (couche HTTP)
+|       ├── outBound/           # Référentiels (couche d'accès aux données)
+│       └── user.module.ts      
+└── main.ts                     # Point d'entrée de l'application
 ```
 
-## Compile and run the project
+## Architecture
 
+Projet job suit un modèle d'architecture propre avec trois couches principales :
+
+1. **Couche Core** : Contient la logique métier, les modèles de domaine, les interfaces, le schema, le provider et les cas d'utilisation
+2. **Couche Inbound** : Gère les requêtes HTTP via les contrôleurs
+3. **Couche Outbound** : Gère la persistance des données via les référentiels
+
+Cette séparation garantit que la logique métier est isolée des préoccupations externes, rendant l'application plus maintenable et testable.
+
+## Fonctionnalités
+
+  ### Gestion des Utilisateurs
+  - Inscription et authentification des utilisateurs
+  - Gestion de profil
+  - Contrôle d'accès basé sur les rôles
+
+  ### Gestion des Emplois
+  - Création, lecture, mise à jour et suppression d'offres d'emploi
+
+  ### Gestion des Candidatures
+  - Soumission de candidatures
+  - Suivi du statut des candidatures
+  - Gestion des candidats pour les employeurs
+
+## 🧱 Modules implémentés
+
+| Module      | Dossier                | Fonctions principales            |
+| ----------- | ---------------------- | -------------------------------- |
+| Auth        | `common/auth`          | Login, validation JWT, guard     |
+| User        | `features/User`        | CRUD utilisateur, rôles          |
+| Job         | `features/Job`         | Créer, lister, trouver une offre |
+| Application | `features/Application` | Postuler à une offre             |
+
+
+## Pour Commencer
+
+### Prérequis
+
+- Nestjs 
+- MongoDB (Mongoose)
+- pnpm
+
+### Installation
+
+1. Cloner le dépôt
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+git clone https://github.com/Konanycode1/Job.git
+cd Job
 ```
 
-## Run tests
-
+2. Installer les dépendances
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+3. build le projet
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm run build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+4. Configurer les variables d'environnement
+Voici un exemple des variables d'environnement nécessaires pour faire fonctionner l'application :
+```bash
+cp .env.example .env
 
-## Resources
+  NODE_ENV=
+  PORT=
+  DATABASE_URL=""
+  JWT_SECRET=""
+  JWT_EXPIRES_IN=''
+  JWT_REFRESH_SECRET=''
+  JWT_REFRESH_EXPIRES_IN=''   
+# Modifier .env avec votre configuration
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+5. Démarrer le serveur de développement
+```bash
+pnpm run start:dev
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
+## 📄 Documentation Swagger
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+La documentation de l'API est disponible à `/api/docs` lorsque le serveur est en cours d'exécution, alimentée par Swagger.
 
-## Stay in touch
+Une fois le projet démarré :
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+GET http://localhost:3000/api/doc
 
-## License
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Contient les endpoints pour :
+
+Auth
+
+User
+
+Job
+
+Apply
+
+
+## Authentification
+
+Infini utilise l'authentification basée sur JWT. Pour accéder aux routes protégées :
+
+1. Inscrivez un nouvel utilisateur ou connectez-vous avec des identifiants existants
+2. Utilisez le jeton JWT retourné dans l'en-tête d'autorisation : `Bearer <token>`
+
+
+
+## Tests
+
+```bash
+# Exécuter les tests unitaires
+pnpm run test
+
+# Exécuter les tests d'intégration
+pnpm run test:e2e
+
+# Générer la couverture de test
+npm run test:cov
+```
+
+## Déploiement
+
+### Build de Production
+
+```bash
+pnpm run build
+pnpm run start:prod
+```
+
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
+
+## Contact
+
+Pour toute question ou support, veuillez contacter le responsable du projet à abrahamkonany@gmail.com

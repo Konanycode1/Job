@@ -4,3 +4,6 @@ export declare class CreateJobDto {
     recruiter: string;
     createdAt?: Date;
 }
+export declare class ApplyDto {
+    cvUrl: string;
+}

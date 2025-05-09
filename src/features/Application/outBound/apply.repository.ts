@@ -38,6 +38,7 @@ export class ApplyRepository implements InterfaceApplyRepository {
       .exec();
   }
 
+
   async findByJobAndCandidate(
     job: string,
     candidate: string,
@@ -52,6 +53,22 @@ export class ApplyRepository implements InterfaceApplyRepository {
   async findAll(): Promise<Application[]> {
     return await this.applyModel
       .find({})
+      .populate('candidate')
+      .populate('job')
+      .exec();
+  }
+
+  async findAllApplyByJob(job:string): Promise<Application[]> {
+    return await this.applyModel
+      .find({job:job})
+      .populate('candidate')
+      .populate('job')
+      .exec();
+  }
+
+  async findAllApplyByCandidate(candidate:string): Promise<Application[]> {
+    return await this.applyModel
+      .find({candidate})
       .populate('candidate')
       .populate('job')
       .exec();
