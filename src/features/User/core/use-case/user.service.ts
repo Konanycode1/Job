@@ -30,8 +30,10 @@ export class UserService {
     return await this.userRepository.edit(id, dto);
   }
 
-  delete(id: string): Promise<any> {
-    return this.userRepository.delete(id);
+  async delete(id: string): Promise<any> {
+    const deleted = await this.userRepository.delete(id);
+    if(deleted.success === false) return { success: false, message: 'User not found' };
+    return deleted;
   }
   async findOne(id: string): Promise<any> {
     return await this.userRepository.findById(id);

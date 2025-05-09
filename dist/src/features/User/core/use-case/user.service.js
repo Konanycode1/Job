@@ -55,7 +55,12 @@ let UserService = class UserService {
         });
     }
     delete(id) {
-        return this.userRepository.delete(id);
+        return __awaiter(this, void 0, void 0, function* () {
+            const deleted = yield this.userRepository.delete(id);
+            if (deleted.success === false)
+                return { success: false, message: 'User not found' };
+            return deleted;
+        });
     }
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -27,7 +27,7 @@ export class UserRepository implements InterfaceUserRepository {
   }
   async delete(id: string): Promise<any> {
     const exist = await this.userModel.findById(id);
-    if (!exist) return { sucess: false, message: 'User not found' };
+    if (exist === null) return { sucess: false, message: 'User not found' };
     const deleted = await this.userModel.findByIdAndDelete(id);
     return deleted;
   }

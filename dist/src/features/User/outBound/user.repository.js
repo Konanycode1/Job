@@ -49,7 +49,7 @@ let UserRepository = class UserRepository {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const exist = yield this.userModel.findById(id);
-            if (!exist)
+            if (exist === null)
                 return { sucess: false, message: 'User not found' };
             const deleted = yield this.userModel.findByIdAndDelete(id);
             return deleted;
