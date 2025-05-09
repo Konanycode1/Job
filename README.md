@@ -1,8 +1,8 @@
-# Plateforme Infini Job
+# Plateforme Job
 
 ## Aperçu
 
-Job Infini est une plateforme complète de gestion d'emploi construite avec NestJS, fournissant une architecture backend robuste pour les offres d'emploi, les candidatures et la gestion des utilisateurs. L'application suit un modèle d'architecture propre avec une séparation claire des préoccupations entre la logique métier, les contrôleurs entrants et les référentiels sortants.
+Job  est une plateforme complète de gestion d'emploi construite avec NestJS, fournissant une architecture backend robuste pour les offres d'emploi, les candidatures et la gestion des utilisateurs. L'application suit un modèle d'architecture propre avec une séparation claire des préoccupations entre la logique métier, les contrôleurs entrants et les référentiels sortants.
 
 ## 📦 Arborescence du projet
 
